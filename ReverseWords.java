@@ -5,13 +5,18 @@ class Solution
    {
        String[]ch=s.split("\\s+");
        StringBuilder res=new StringBuilder();
-       for(int i=ch.length-1;i>=0;i--)
+       for(int i=0;i<ch.length;i++)
        {
-          res.append(ch[i]);
-          if(i>0)
-          {
-            res.append(" ");
-          }
+           StringBuilder r=new StringBuilder(ch[i]);
+
+           res.append(r.reverse());
+           if(i<ch.length)
+           {
+               res.append(" ");
+           }
+
+
+          
        }
        return res.toString();
 

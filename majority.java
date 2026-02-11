@@ -1,50 +1,53 @@
 import java.util.*;
-class Solution 
+class Solution
 {
-   static int result(int[]arr,int n)
+   static int majorityEl(int[]arr,int n)
    {
-       int candidate=-1;
-       int count=0;
-       for(int num:arr)
-       {
-          if(count==0)
+      int cnt=0;
+      int cnd=0;
+      for(int num:arr)
+      {
+         if(cnt==0)
+         {
+             cnd=num;
+             cnt=1;
+         }
+         else if(num==cnd)
+                         cnt++;
+        else 
+                         cnt--;
+      }
+      cnt=0;
+      for(int num:arr)
+      {
+          if(num==cnd)
           {
-            candidate=num;
-            count=1; 
+                         cnt++;
           }
-          else if(num==candidate)
-          count++;
-          else 
-            count--;
-       }
-       count=0;
-       for(int num:arr)
-       {
-             if(num==candidate)
-             count++;
-       }
-       if(count>n/2)
-       return candidate;
-       else 
-       return -1;
-       
+      }
+      if(cnt>n/2)
+      {
+                         return cnd;
+      }
+      return -1;
    }
 }
 public class majority {
                          public static void main(String[] args) {
                                                   
-                           int n;
-                           Scanner sc=new Scanner(System.in);
-                           n=sc.nextInt();
-
-                           int[]arr=new int[n];
-                           for(int i=0;i<n;i++)
-                           {
+                            Scanner sc=new Scanner(System.in);
+                            int n=sc.nextInt();
+                            int[]arr=new int[n];
+                            for(int i=0;i<n;i++)
+                            {
                               arr[i]=sc.nextInt();
-                           }
-                           int res=Solution.result(arr,n);
-                           System.out.println("Majority element = "+res);
-                           sc.close();
+                            }
+                            int majority=Solution.majorityEl(arr,n);
+                            if(majority!=-1)
+                            System.out.println("Majority element = "+majority);
+                         else 
+                                                  System.out.println("Majority element doesn't exist");
+                            sc.close();
                          }
                          
 }
